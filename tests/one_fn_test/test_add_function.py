@@ -12,7 +12,7 @@ import sys
 
 import pytest
 
-from tests.test_app import coverage_context
+from tests.test_app import TestFrame
 
 sys.path.append('../src')
 
@@ -36,6 +36,7 @@ class TestAdd(object):
 
 
 if __name__ == '__main__':
-    with coverage_context(['../src', './'], debug=False, wait_running=1):
+    test_frame = TestFrame()
+    with test_frame.coverage_context(['../src', './'], debug=False, wait_running=1):
         # pytest.main(["-s","test_add_function.py"])
         pytest.main(["--cov=./src", "--cov-report=html"])
